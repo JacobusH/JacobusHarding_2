@@ -1,4 +1,5 @@
 // Modules
+import { AngularFireModule } from 'angularfire2';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,6 +12,16 @@ import { MlxTrackerComponent } from './components/mlx-tracker/mlx-tracker.compon
 
 // Services
 import { MlxService } from 'app/services/_index';
+
+// Initialize Firebase
+var firebaseConfig = {
+  apiKey: "AIzaSyABNERwuAKg143b79gQWFlZaNR80P_-JbM",
+  authDomain: "jacobusharding-4b3f2.firebaseapp.com",
+  databaseURL: "https://jacobusharding-4b3f2.firebaseio.com",
+  projectId: "jacobusharding-4b3f2",
+  storageBucket: "jacobusharding-4b3f2.appspot.com",
+  messagingSenderId: "425533756503"
+};
 
 
 const routes: Routes = [
@@ -65,6 +76,7 @@ const routes: Routes = [
     MlxTrackerComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(firebaseConfig),
     BrowserModule,
     RouterModule.forRoot(routes),
   ],
