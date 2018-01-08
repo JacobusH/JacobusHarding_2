@@ -1,1 +1,39 @@
-mlx-tracker
+<div class="row">
+    <!-- Select MLX to Edit -->
+    <div class="col-lg-6">
+      <div class="mlx-select-container">
+        <button class="new-btn btn btn-info mB15" (click)="setNewMLX()">New</button>
+        <div class="mlx-container">
+          <div class="mlx" (click)="setSelectedMLX(mlx)" *ngFor="let mlx of mlxs | async">
+            <span>{{ (mlx.text.length > 15) ? (mlx.text | slice:0:15) + '...' : (mlx.text) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <!-- SAVE FORM -->
+    <form (ngSubmit)="saveMLX(mlxForm)" #mlxForm="ngForm">
+        <div class="form-group">
+          <label for="text">Text</label>
+          <textarea rows="3" class="form-control" id="text" required
+            [(ngModel)]="model.text" name="text"
+            #text="ngModel"
+            [ngClass]="{
+              'has-success': text.valid,
+              'has-danger': !text.pristine && !text.valid
+            }">
+          </textarea>
+            <div [hidden]="text.valid || text.pristine" class="alert alert-danger">
+              Text is required
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="!testimonialForm.form.valid">Save</button>
+      </form> 
+    </div>
+  </div>
+  
+  
+  
+  
+  
+  

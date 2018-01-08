@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MLXTrackerComponent } from './mlx-tracker.component';
+import { FormUploadComponent } from './form-upload.component';
 
-describe('MlxTrackerComponent', () => {
-  let component: MLXTrackerComponent;
-  let fixture: ComponentFixture<MLXTrackerComponent>;
+describe('FormUploadComponent', () => {
+  let component: FormUploadComponent;
+  let fixture: ComponentFixture<FormUploadComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MLXTrackerComponent ]
+      declarations: [ FormUploadComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MLXTrackerComponent);
+    fixture = TestBed.createComponent(FormUploadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

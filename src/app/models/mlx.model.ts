@@ -16,7 +16,8 @@
 export interface MLX {
   key: string,
   eventName: string,
-  eventDate: string ,
+  eventDate: Date,
+  artists: Array<string>,
   mAmount: number,
   lAmount: number,
   xAmount: number

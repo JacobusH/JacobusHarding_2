@@ -3,15 +3,18 @@ import { AngularFireModule } from 'angularfire2';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
-import { MlxTrackerComponent } from './components/mlx-tracker/mlx-tracker.component';
+import { MLXTrackerComponent } from './components/mlx-tracker/mlx-tracker.component';
 
 // Services
-import { MlxService } from 'app/services/_index';
+import { MLXService } from 'app/services/_index';
+import { FormUploadComponent } from './components/mlx-tracker/form-upload/form-upload.component';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 // Initialize Firebase
 var firebaseConfig = {
@@ -73,14 +76,20 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    MlxTrackerComponent
+    MLXTrackerComponent,
+    FormUploadComponent
   ],
   imports: [
     AngularFireModule.initializeApp(firebaseConfig),
+    AngularFirestoreModule,
     BrowserModule,
     RouterModule.forRoot(routes),
+    FormsModule, 
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [
+    MLXService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

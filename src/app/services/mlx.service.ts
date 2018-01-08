@@ -7,13 +7,13 @@ import 'rxjs/add/operator/switchMap'
 import * as firebase from 'firebase/app';
 
 @Injectable()
-export class MlxService {
-  mlx: AngularFirestoreCollection<MLX>;
+export class MLXService {
+  mlxs: AngularFirestoreCollection<MLX>;
   // testimonialsActive: AngularFirestoreCollection<MLX>;
   // testimonialsFirst4: AngularFirestoreCollection<MLX>;
   
   constructor(private afs: AngularFirestore) { 
-    this.mlx = this.afs.collection<MLX>('testimonials');
+    this.mlxs = this.afs.collection<MLX>('testimonials');
     // this.testimonialsActive = this.afs.collection<Testimonial>('testimonials', ref => ref.where('isActive', '==', true));
     // this.testimonialsFirst4 = this.afs.collection<Testimonial>('testimonials', ref => ref.limit(4));
   }
@@ -22,16 +22,17 @@ export class MlxService {
     let data: MLX = {
       key: '',
       eventName: '',
-      eventDate: '',
-      mAmount: true,
-      lAmount: new Date(),
-      xAmount: new Date()
+      eventDate: new Date(),
+      artists: new Array,
+      mAmount: 0,
+      lAmount: 0,
+      xAmount: 0
       };
       return data;
   }
 
   save(t: MLX): Promise<firebase.firestore.DocumentReference>  {
-    let promise: Promise<firebase.firestore.DocumentReference> = this.mlx.add(t);
+    let promise: Promise<firebase.firestore.DocumentReference> = this.mlxs.add(t);
     promise.then(x => {
       x.update({key: x.id});
     });
@@ -40,11 +41,11 @@ export class MlxService {
   }
 
   edit(item: MLX): Promise<void> {
-    return this.mlx.doc(item.key).update(item);
+    return this.mlxs.doc(item.key).update(item);
   }
 
   delete(item: MLX): Promise<void> {
-    return this.mlx.doc(item.key).delete();
+    return this.mlxs.doc(item.key).delete();
   }
 
 }
